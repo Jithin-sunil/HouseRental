@@ -1,243 +1,275 @@
-
-<script type="text/javascript">
-    function preventBack() { window.history.forward(); }
-    setTimeout("preventBack()", 0);
-    window.onunload = function () { null };
-  </script>
-  
-  <style>
-      :root {primary-col:#6C7BEE;}
-      .bg {
-        background-color:black;
-        width: 480px;
-        height: auto;
-        align-items: top;
-        overflow:hidden;
-        margin: 0 auto;
-        box-sizing: border-box;
-        padding: 5px;
-        font-family: 'Roboto';
-        margin-top: 0px;
-        margin-bottom: 0px;
-      }
-      .card {
-        background-color: rgb(231, 228, 228);
-        width: 100%;
-        height:auto;
-        float: left;
-        margin-top: 0px;
-        border-radius: 5px;
-        box-sizing: border-box;
-        padding: 20px 30px 25px 20px;
-        text-align: center;
-        position: relative;
-        box-shadow:  20px 30px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)
-        &__success {;
-          position: absolute;
-          top: -50px;
-          left: 145px;
-          width: 100px;
-          height: 100px;
-          border-radius: 100%;
-          background-color: #60c878;
-          border: 5px solid white;
-          i{
-            color: white;
-            line-height: 100px;
-            font-size: 45px;
-          }
-          
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful | Transaction Complete</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3a0ca3;
+            --accent: #4895ef;
+            --success: #4cc9f0;
+            --success-dark: #2a9d8f;
+            --light: #f8f9fa;
         }
-        &__msg {
-          text-transform: uppercase;
-          color: #55585b;
-          font-size: 18px;
-          font-weight: 500;
-          text-align: top;
-          
-        }
-        &__submsg {  
-          color: #959a9e;
-          font-size: 16px;
-          font-weight: 400;
-          margin-top: 0px;
-        }
-        &__body {
-          background-color: #d90505;
-          border-radius: 4px;
-          width: 100%;
-          margin-top: 30px;
-          float: left;
-          box-sizing: border-box;
-          padding: 30px;
-        }
-        &__avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 100%;
-          display: inline-block;
-          margin-right: 10px;
-          position: relative;
-          top: 7px;
-        }
-        &__recipient-info {
-          display: inline-block;
-        }
-        &__recipient { 
-          color: #232528;
-          text-align: left;
-          margin-bottom: 5px;
-          font-weight: 600;
-        }
-        &__email {
-          color: #838890;
-          text-align: left;
-          margin-top: 0px; 
-        }
-        &__price {
-          color: #232528;
-          font-size: 70px;
-          margin-top: 25px;
-          margin-bottom: 30px;
-          span {font-size: 60%;}
-        }
-        &__method {
-          color: #d3cece;
-          text-transform: uppercase;
-          text-align: left;
-          font-size: 11px;
-          margin-bottom: 5px;
-        }
-        &__payment {
-          background-color: white;
-          border-radius: 4px;
-          width: 100%;
-          height: 100px;
-          box-sizing: border-box;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        &__credit-card {
-          width: 50px;
-          display: inline-block;
-          margin-right: 15px;
-        }
-        &__card-details { 
-          display: inline-block;
-          text-align: left; 
-        }
-        &__card-type {
-          text-transform: uppercase;
-          color: #232528;
-          font-weight: 600;
-          font-size: 12px;
-          margin-bottom: 3px;
-        }
-        &__card-number {
-          color: #838890;
-          font-size: 12px;    
-          margin-top: 0px;
-        }
-        &__tags { 
-          clear: both;
-          padding-top: 15px;
-        }
-        &__tag { 
-          text-transform: uppercase;
-          background-color: #f8f6f6;
-          box-sizing: border-box;
-          padding: 3px 5px;
-          border-radius: 3px;
-          font-size: 10px;
-          color: #d3cece;
-        }
-      }
-  
-  
-  .body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  h2 {
-    font-family: Helvetica;
-    font-size: 36px;
-    margin-top: 0px;
-    color: #333;
-    opacity: 0;
-  }
-  
-  input[type="checkbox"]:checked ~ h2 {
-    animation: .1s title ease-in-out;
-    animation-delay: 1.2s;
-    animation-fill-mode: forwards;
-  }
-  
-  .circle {
-    stroke-dasharray: 1194;
-    stroke-dashoffset: 1194;
-  }
-  
-  input[type="checkbox"]:checked + svg .circle {
-    animation: circle 1s ease-in-out;
-    animation-fill-mode: forwards;
-  }
-  
-  .tick {
-    stroke-dasharray: 350;
-    stroke-dashoffset: 350;
-    -webkit-text-stroke-color: rgb(22, 132, 10);
-  }
-  </style>
-  </head>
-      <body onLoad="Redirect()">
-      <div class="bg">
         
-        <div class="card">
-          
-          <span class="card__success"><i class="ion-checkmark"></i></span>
-          
-          <h1 class="card__msg">Payment Complete</h1>
-  
-  <h2 class="card__submsg">Thank you for your transfer</h2>
-          
-          <div class="card__body">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f0f8ff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        
+        .success-container {
+            text-align: center;
+            max-width: 500px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        .success-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--success), var(--success-dark));
+        }
+        
+        .checkmark {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .checkmark-circle {
+            width: 100%;
+            height: 100%;
+            background: rgba(76, 201, 240, 0.1);
+            border-radius: 50%;
+            border: 3px solid var(--success);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: pulse 2s infinite;
+        }
+        
+        .checkmark-icon {
+            font-size: 50px;
+            color: var(--success);
+            animation: bounce 0.6s ease;
+        }
+        
+        .success-animation {
+            width: 200px;
+            height: 150px;
+            margin: 20px auto;
+        }
+        
+        .success-title {
+            font-size: 28px;
+            color: var(--success-dark);
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .success-message {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .amount-display {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--secondary);
+            margin: 15px 0;
+        }
+        
+        .transaction-id {
+            background: #f0f8ff;
+            padding: 10px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin: 15px 0;
+            font-family: monospace;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .receipt-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f0f8ff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin: 15px 0;
+        }
+        
+        .receipt-badge i {
+            color: var(--success);
+        }
+        
+        .thank-you {
+            margin-top: 20px;
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 500;
+        }
+        
+        .redirect-message {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .payment-method {
+            font-size: 24px;
+            color: var(--primary);
+            opacity: 0.7;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(76, 201, 240, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(76, 201, 240, 0); }
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 600px) {
+            .success-container {
+                width: 90%;
+                padding: 30px 20px;
+            }
             
+            .success-title {
+                font-size: 24px;
+            }
             
-            <div class="card__recipient-info">
-             
+            .success-message {
+                font-size: 14px;
+            }
+            
+            .success-animation {
+                width: 150px;
+                height: 120px;
+            }
+        }
+    </style>
+    <script>
+        // Generate random transaction ID
+        function generateTransactionId() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 12; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+                if ((i + 1) % 4 === 0 && i !== 11) {
+                    result += '-';
+                }
+            }
+            return result;
+        }
+
+        // Set transaction ID on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const transactionIdElement = document.getElementById('transactionId');
+            transactionIdElement.textContent = 'Transaction ID: ' + generateTransactionId();
+            
+            // You can also set a random amount if needed
+            // const amounts = ['49.99', '99.50', '125.00', '75.25', '199.99'];
+            // document.getElementById('paymentAmount').textContent = 
+            //   amounts[Math.floor(Math.random() * amounts.length)];
+        });
+
+        setTimeout(function() {
+            window.location="Homepage.php";
+        }, 5000);
+    </script>
+</head>
+<body>
+    <div class="success-container">
+        <div class="checkmark">
+            <div class="checkmark-circle">
+                <i class="fas fa-check checkmark-icon"></i>
             </div>
-            
-          
-            
-            <p class="card__method">Payment method</p>
-            <div class="card__payment">
-              <img src="https://seeklogo.com/images/V/VISA-logo-F3440F512B-seeklogo.com.png" class="card__credit-card">
-              <div class="card__card-details">
-                <p class="card__card-type">Credit / debit card</p>
-                  
-              </div>
-            </div>
-            
-          </div>
-          
-          <div class="card__tags">
-              <span class="card__tag">completed</span>
-             
-          </div>
-          
         </div>
         
-      </div>
-      </body>
-      <script>
-      function Redirect()
-      {
-          window.setTimeout(function() {
-          window.location = "Homepage.php";
-        }, 5000);
-      }
-      </script>
+        <h1 class="success-title">Payment Successful!</h1>
+        <p class="success-message">Your transaction has been processed successfully</p>
+        
+        <div class="amount-display">
+            <span>$</span>
+            <span id="paymentAmount"><?php echo $_GET['amt']?></span>
+        </div>
+        
+        <div class="success-animation">
+            <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_5tkzkblw.json" 
+                          background="transparent" speed="1" 
+                          style="width: 100%; height: 100%;" 
+                          loop autoplay></lottie-player>
+        </div>
+        
+        <div class="transaction-id" id="transactionId"></div>
+        
+        <div class="receipt-badge">
+            <i class="fas fa-receipt"></i>
+            <span>Receipt has been sent to your email</span>
+        </div>
+        
+        <div class="payment-methods">
+            <i class="fab fa-cc-visa payment-method"></i>
+            <i class="fab fa-cc-mastercard payment-method"></i>
+            <i class="fab fa-cc-amex payment-method"></i>
+        </div>
+        
+        <p class="thank-you">Thank you for your payment!</p>
+        
+        <div class="redirect-message">
+            <i class="fas fa-spinner fa-spin"></i>
+            <span>Redirecting to your account...</span>
+        </div>
+    </div>
+</body>
+</html>
