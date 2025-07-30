@@ -66,7 +66,7 @@ if(isset($_GET['rid']))
       if($data['booking_status']==0)
       {
       ?>
-      <a href = "Chat.php?uid=<?php echo $data['user_id'] ?>"> Chat </a>
+      <a href = "Chat.php?userId=<?php echo $data['user_id'] ?>"> Chat </a>
       <a href="#" onclick="
         var amt = prompt('Enter accepted amount:');
         if(amt !== null && amt !== '') {
@@ -95,9 +95,9 @@ if(isset($_GET['rid']))
       else if($data['booking_status'] == 3)
       {
           ?>
-          <a href = "Chat.php?uid=<?php echo $data['user_id'] ?>"> Chat </a>
+          <a href = "Chat.php?userId=<?php echo $data['user_id'] ?>"> Chat </a>
           <?php
-          echo "Paid Advance Amount of " . ($data['booking_amount'] * 0.20);
+          echo "Paid Advance Amount of " . ($data['booking_amount'] * 0.05);
       }
       ?>
       </td>

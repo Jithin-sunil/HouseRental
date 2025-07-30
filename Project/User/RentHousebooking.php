@@ -1,5 +1,6 @@
 <?php
 include("../Assets/Connection/Connection.php");
+session_start();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,7 +49,40 @@ while($data=$row->fetch_assoc())
       <td><?php echo $data['rent_date'] ?></td>
       <td><?php echo $data['rent_fromdate'] ?></td>
       <td><?php echo $data['rent_todate'] ?></td>
-      <td></td>
+       <td>
+          <?php
+    if($data['rent_status']==0)
+    {
+      echo "Pending..";
+    ?>
+          <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>
+
+          <?php
+    }
+    else  if($data['rent_status']==1)
+    {
+      echo "Accepeted.";
+      ?>
+          <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>
+          <a href="Payment.php?rid=<?php echo $data['rent_id'] ?>"> Payment </a>
+          <?php
+      
+    }
+     else  if($data['rent_status']==2)
+    {
+      echo "Rejected..";
+      
+    }
+    else if($data['rent_status'] == 3)
+    {
+      ?>
+          <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>/
+          <a href="Rating.php?oid=<?php echo $data['owner_id'] ?>"> Rating </a>
+          <?php
+              echo "Payed Advance Amount of " . ($data['rent_tokenamount'] );
+    }
+    ?>
+        </td>
     </tr>
     <?php
 }

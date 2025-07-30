@@ -2,7 +2,7 @@
 include("../Assets/Connection/Connection.php");
 if(isset($_GET['aid']))
 	{
-		$upQry="update tbl_rent set rent_status=1 where rent_id='".$_GET['aid']."'";
+		$upQry="update tbl_rent set rent_status=1,rent_tokenamount='".$_GET['amt']."' where rent_id='".$_GET['aid']."'";
 		if($Con->query($upQry))
 		{
 			?>
@@ -70,9 +70,45 @@ if(isset($_GET['aid']))
       <td><?php echo $data['rent_date'] ?></td>
       <td><?php echo $data['rent_fromdate'] ?></td>
       <td><?php echo $data['rent_todate'] ?></td>
-      <td>
-      <a href="ViewRentbooking.php?aid=<?php echo $data['rent_id'] ?>"> Accepted </a>
-      <a href="ViewRentbooking.php?rid=<?php echo $data['rent_id'] ?>"> Rejected </a>
+     <td>
+      <?php
+      if($data['rent_status']==0)
+      {
+      ?>
+      <a href = "Chat.php?userId=<?php echo $data['user_id'] ?>"> Chat </a>
+      <a href="#" onclick="
+        var amt = prompt('Enter accepted amount:');
+        if(amt !== null && amt !== '') {
+          if(isNaN(amt) || amt <= 1000) {
+            alert('Please enter an amount greater than 1000.');
+            return false;
+          } else {
+            window.location = 'ViewRentbooking.php?aid=<?php echo $data['rent_id'] ?>&amt=' + encodeURIComponent(amt);
+          }
+        }
+        return false;"> Accepted </a>
+      <a href = "ViewRentbooking.php?rid=<?php echo $data['rent_id'] ?>"> Rejected </a>
+      <?php
+      }
+      else if($data['rent_status']==1)
+      {
+          echo "Accepted.";
+          ?>
+          <a href = "Chat.php?userId=<?php echo $data['user_id'] ?>"> Chat </a>
+          <?php
+      }
+      else if($data['rent_status']==2)
+      {
+          echo "Rejected.";
+      }
+      else if($data['rent_status'] == 3)
+      {
+          ?>
+          <a href = "Chat.php?userId=<?php echo $data['user_id'] ?>"> Chat </a>
+          <?php
+          echo "Paid Advance Amount of " . ($data['rent_tokenamount'] );
+      }
+      ?>
       </td>
     </tr>
       <?php

@@ -23,7 +23,7 @@ session_start();
         <td>Booking Date </td>
         <td>Action</td>
       </tr>
-        <?php
+      <?php
               $i=0;
                 $selQry="select * from tbl_booking  b inner join tbl_house h on b.house_id=h.house_id 
                 inner join tbl_owner o on h.owner_id=o.owner_id where b.user_id = '" . $_SESSION['uid'] . "' order by b.booking_date desc 
@@ -55,36 +55,38 @@ session_start();
         </td>
         <td>
           <?php
-	  if($data['booking_status']==0)
-	  {
-		  echo "Pending..";
-	  ?>
+    if($data['booking_status']==0)
+    {
+      echo "Pending..";
+    ?>
           <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>
 
           <?php
-	  }
-	  else  if($data['booking_status']==1)
-	  {
-		  echo "Accepeted.";
-		  ?>
+    }
+    else  if($data['booking_status']==1)
+    {
+      echo "Accepeted.";
+      ?>
           <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>
-          <a href="Payment.php?pid=<?php echo $data['booking_id'] ?>"> Payment </a>
+          <a href="Payment.php?bid=<?php echo $data['booking_id'] ?>"> Payment </a>
           <?php
-		  
-	  }
-	   else  if($data['booking_status']==2)
-	  {
-		  echo "Rejected..";
-		  
-	  }
-	  else if($data['booking_status'] == 3)
-	  {
-		  ?>
-          <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>
+      
+    }
+     else  if($data['booking_status']==2)
+    {
+      echo "Rejected..";
+      
+    }
+    else if($data['booking_status'] == 3)
+    {
+      ?>
+          <a href="Chat.php?ownerId=<?php echo $data['owner_id'] ?>"> Chat </a>/
+          <a href="Rating.php?oid=<?php echo $data['owner_id'] ?>"> Rating </a>
+
           <?php
-		  echo "Payed Advance Amount of "; $data['booking_amount'] * .20;
-	  }
-	  ?>
+              echo "Payed Advance Amount of " . ($data['booking_amount'] * 0.05);
+    }
+    ?>
         </td>
       </tr>
       <?php

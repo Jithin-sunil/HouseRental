@@ -3,23 +3,42 @@
 include("../Assets/Connection/Connection.php");
 session_start();
 
-$SelQry="select * from tbl_booking where booking_id =".$_GET['bid'];
-$row=$Con->query($SelQry);
-	$data=$row->fetch_assoc();
+$row = null;
 
-if(isset($_POST['btn_submit']))
-{
-	$upQry="update tbl_booking set booking_status = 2 where booking_id='".$_GET['bid']."'";
-		if($Con->query($upQry))
-		{
-			?>
-        <script>
-		//alert("Payment completed");
-		window.location="Loader.php";
-		</script>
-        <?php
-		}
+if (isset($_GET['bid']) && $_GET['bid'] != 0) {
+    $bid = $_GET['bid'];
+    $SelQry = "SELECT * FROM tbl_booking WHERE booking_id = $bid";
+    $res = $Con->query($SelQry);
+    if ($res && $res->num_rows > 0) {
+        $row = $res->fetch_assoc();
+		$amt=$row['booking_amount'] *.05;
+    }
+}
+elseif (isset($_GET['rid']) && $_GET['rid'] != 0) {
+    $rid = $_GET['rid'];
+    $SelQry = "SELECT * FROM tbl_rent WHERE rent_id = $rid";
+    $res = $Con->query($SelQry);
+    if ($res && $res->num_rows > 0) {
+        $row = $res->fetch_assoc();
+		$amt=$row['rent_tokenamount'] ;
+    }
+}
 
+if (isset($_POST["btn_submit"])) {
+    if (isset($_GET['bid']) && $_GET['bid'] != "") {
+        $update = "UPDATE tbl_booking SET packagebooking_status='3' WHERE booking_id = " . $_GET["bid"];
+    } elseif (isset($_GET['rid']) && $_GET['rid'] != "") {
+  
+        $update = "UPDATE tbl_rent SET rent_status='3' WHERE rent_id = " . $_GET["rid"];
+    }
+
+    if (isset($update)) {
+        if ($Con->query($update)) {
+            echo '<script>window.location="Loader.php";</script>';
+        } else {
+            echo "<script>alert('Payment update failed.')</script>";
+        }
+    }
 }
 
 ?>
@@ -129,7 +148,7 @@ if(isset($_POST['btn_submit']))
                                                 </tr>
                                                 <tr>
                                                     <td>Total</td>
-                                                    <td><?php echo $data['booking_amount'] ?></td>
+                                                    <td><?php echo $amt?></td>
                                                 </tr>
                                                 <tr>
                                                     <td colspan="4" align="center"><input type="submit"

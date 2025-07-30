@@ -58,7 +58,7 @@ session_start();
     </tr>
      <?php
 	$i=0;
-	$selQry="select * from tbl_house h inner join tbl_place p on h.place_id = p.place_id inner join tbl_district d on p.district_id=d.district_id inner join tbl_housetype ht on h.housetype_id = ht.housetype_id inner join tbl_type t on h.type_id = t.type_id WHERE h.type_id=2";
+	$selQry="select * from tbl_house h inner join tbl_place p on h.place_id = p.place_id inner join tbl_district d on p.district_id=d.district_id inner join tbl_housetype ht on h.housetype_id = ht.housetype_id inner join tbl_type t on h.type_id = t.type_id WHERE h.type_id=2 and house_status=0";
 	$row=$Con->query($selQry);
 	while($data=$row->fetch_assoc())
 	{

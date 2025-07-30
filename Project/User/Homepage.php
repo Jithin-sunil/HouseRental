@@ -8,6 +8,10 @@
 <body>
 <a href="Myprofile.php">My Profile</a><br />
 <a href="Viewhouse.php">View House</a><br />
-<a href="ViewRenthouse.php">View Rent House</a><br />
+<a href="RentHousebooking.php">RentHousebooking</a><br />
+<a href="SellHousebooking.php">SellHousebooking</a><br />
+<a href="Postcomplaint.php">Post Complaint</a><br />
+<a href="FeedBack.php">Post FeedBack</a><br />
+
 </body>
 </html>

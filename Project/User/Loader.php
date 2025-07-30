@@ -72,7 +72,7 @@
       var myVar;
       function myFunction() {
       window.setTimeout(function() {
-      window.location = "Sucessor.html";
+      window.location = "Sucessor.php";
       }, 5000);
       }
 function showPage() {
